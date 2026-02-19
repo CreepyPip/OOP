@@ -9,6 +9,7 @@
 #include <stdexcept> // Для обработки ошибок
 #include <vector>
 #include <string> 
+#include <cstdbool>
 
 using namespace std; // std нужно для cout, cin
 
@@ -182,6 +183,19 @@ float ResMas(int n, fid *a)
 	}
 
 	return sin(abs(sum*(M_PI/180))); // Перевод из радиан в градусы
+}
+
+template<typename fid>
+bool leapyear(fid y)
+{
+	if (y % 4 || y = 0)
+	{
+		return 1;
+	}
+	else
+	{
+		return 0;
+	}
 }
 
 }

@@ -18,8 +18,14 @@ public:
 
 	Date(unsigned short day, unsigned short month, unsigned short year);
 	
-	unsigned short setDay() const;
-	unsigned short setMonth() const;
-	unsigned short setYear() const;
+	unsigned short getDay() const;
+	unsigned short getMonth() const;
+	unsigned short getYear() const;
+
+	void Date::setDay(unsigned short newDay);
+	void Date::setMonth(unsigned short newMonth);
+	void Date::setYear(unsigned short newYear);
+
+	
 
 };
