@@ -22,10 +22,14 @@ public:
 	unsigned short getMonth() const;
 	unsigned short getYear() const;
 
-	void Date::setDay(unsigned short newDay);
-	void Date::setMonth(unsigned short newMonth);
-	void Date::setYear(unsigned short newYear);
+	void setDay(unsigned short newDay);
+	void setMonth(unsigned short newMonth);
+	void setYear(unsigned short newYear);
 
+	void addDay(unsigned short newDay);
+	void addMonth(unsigned short newMonth);
+	void addYear(unsigned short newYear);
 	
+	string DateString() const;
 
 };

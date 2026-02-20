@@ -14,7 +14,7 @@ Date::Date(unsigned short day, unsigned short month): year(0)
 	setMonth(month);
 }
 
-Date::Date(unsigned short day, unsigned short month, unsigned short year): 
+Date::Date(unsigned short day, unsigned short month, unsigned short year) 
 {
 	setDay(day);
 
@@ -24,11 +24,11 @@ Date::Date(unsigned short day, unsigned short month, unsigned short year):
 }
 
 unsigned short Date::getDay() const{
-	return day;
+	return day + 1;
 }
 
 unsigned short Date::getMonth() const{
-	return month;
+	return month + 1;
 }
 
 unsigned short Date::getYear() const{
@@ -36,40 +36,55 @@ unsigned short Date::getYear() const{
 }
 
 void Date::setDay(unsigned short newDay){
-	if (newDay > 31)
-        throw std::invalid_argument("0 <= newDay <= 31");
-    day = newDay;
+	if (newDay > 31 || newDay < 1)
+        throw invalid_argument("1 <= newDay <= 31");
+    day = newDay - 1;
 }
 
 void Date::setMonth(unsigned short newMonth){
-	if (newMonth > 12)
-        throw std::invalid_argument("0 <= newMonth <= 12");
-    month = newMonth;
+	if (newMonth > 12 || newMonth < 1)
+        throw invalid_argument("1 <= newMonth <= 12");
+    month = newMonth - 1;
 }
 
 void Date::setYear(unsigned short newYear){
+	year = newYear;
 
 }
 
 void Date::addDay(unsigned short newDay){
-	if (month == 2 && leapyear(year))
+	if (month == 2 && !leapyear(year))
 	{
-		addMonth(((day + newDay) / 28) - ((day + newDay) % 28));
+		addMonth(((day + newDay) / 29));
+		day = (day + newDay) % 29;
+	}
+	else if (month == 2 && leapyear(year))
+	{
+		addMonth(((day + newDay) / 28));
 		day = (day + newDay) % 28;
 	}
 	else if (month == 4 || month == 6 || month == 9 || month == 11)
 	{
-		addMonth(((day + newDay) / 30) - ((day + newDay) % 30));
+		addMonth(((day + newDay) / 30));
 		day = (day + newDay) % 30;
 	}
 	else
 	{
-		addMonth(((day + newDay) / 31) - ((day + newDay) % 31));
+		addMonth(((day + newDay) / 31));
 		day = (day + newDay) % 31;
 	}
 	
 }
 
 void Date::addMonth(unsigned short newMonth){
-	
+	addYear((month + newMonth) / 12);
+	month = (month + newMonth) % 12;
+}
+
+void Date::addYear(unsigned short newYear){
+	year = (year + newYear);
+}
+
+string Date::DateString() const{
+	return format("{:02d}.{:02d}.{:02d}", day + 1, month + 1, year);
 }

@@ -1,7 +1,7 @@
 #pragma once // Перенос модулей в программу обращающуюся к этому модулю
 #include <cstdlib> // Модуль основных функций из C
 #include <iostream> // Основной модуль C++
-#include <format>
+#include "format.h"
 #include <cmath> // Для sqrt, abs
 #include <cassert> // для assert
 #include <cfloat> // Для FLT_EPSILON
@@ -12,6 +12,7 @@
 #include <cstdbool>
 
 using namespace std; // std нужно для cout, cin
+using namespace my;
 
 namespace mean
 {
@@ -184,11 +185,11 @@ float ResMas(int n, fid *a)
 
 	return sin(abs(sum*(M_PI/180))); // Перевод из радиан в градусы
 }
-
+}
 template<typename fid>
 bool leapyear(fid y)
 {
-	if (y % 4 || y = 0)
+	if (y % 4 || y == 0)
 	{
 		return 1;
 	}
@@ -196,6 +197,4 @@ bool leapyear(fid y)
 	{
 		return 0;
 	}
-}
-
 }
