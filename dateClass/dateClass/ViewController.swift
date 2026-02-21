@@ -12,7 +12,10 @@ class ViewController: NSViewController {
     @IBOutlet weak var MonthField: NSTextField!
     @IBOutlet weak var YearField: NSTextField!
     @IBOutlet weak var DataLabel: NSTextField!
-
+    @IBOutlet weak var SaveDay: NSTextField!
+    @IBOutlet weak var SaveMonth: NSTextField!
+    @IBOutlet weak var SaveYear: NSTextField!
+    
 
     @IBAction func SetButton(_ sender: NSButton) {
         let day = DayField.stringValue
@@ -26,11 +29,22 @@ class ViewController: NSViewController {
         }
         
         let date = Date()
-        date.setDay(dayint)
-        date.setMonth(monthint)
-        date.setYear(yearint)
         
-        DataLabel.stringValue = date.dateString()
+        if checkday(d: dayint, m: monthint, y: yearint) {
+            if checkmonth(m: monthint){
+                
+                date.setDay(dayint)
+                date.setMonth(monthint)
+                date.setYear(yearint)
+                
+                DataLabel.stringValue = date.dateString()
+                SaveDay.stringValue = day
+                SaveMonth.stringValue = month
+                SaveYear.stringValue = year
+            }
+        } else {
+            DataLabel.stringValue = "Ошибка"
+        }
     }
     @IBAction func AddButton(_ sender: NSButton) {
         let day = DayField.stringValue
@@ -45,17 +59,30 @@ class ViewController: NSViewController {
         
         let date = Date()
         
+        let loadday = SaveDay.stringValue
+        let loadmonth = SaveMonth.stringValue
+        let loadyear = SaveYear.stringValue
+        
+        guard let ldint = Int(loadday),
+            let lmint = Int(loadmonth),
+            let lyint = Int(loadyear) else {
+                return
+        }
+        
+        date.setDay(ldint)
+        date.setMonth(lmint)
+        date.setYear(lyint)
+        
         date.addDay(dayint)
         date.addMonth(monthint)
         date.addYear(yearint)
         
         DataLabel.stringValue = date.dateString()
         
+        SaveDay.stringValue = String(dayint + ldint)
+        SaveMonth.stringValue = String(monthint + lmint)
+        SaveYear.stringValue = String(yearint + lyint)
         
     }
-
-
-
-
 }
 

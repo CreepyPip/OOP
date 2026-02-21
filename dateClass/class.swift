@@ -10,22 +10,23 @@ import Foundation
 
 class Date {
     
-    private var day: Int = 0
-    private var month: Int = 0
-    private var year: Int = 0
+    private var day: Int
+    private var month: Int
+    private var year: Int
     
+    // Присваивает начальные значения
     init() {
         self.day = 0
         self.month = 0
         self.year = 0
     }
     
-    convenience init(day: Int) throws {
+    convenience init(day: Int) {
         self.init()
         setDay(day)
     }
     
-    convenience init(day: Int, month: Int) throws {
+    convenience init(day: Int, month: Int) {
         self.init()
         setDay(day)
         setMonth(month)
@@ -38,25 +39,30 @@ class Date {
         setYear(year)
     }
     
+    // Выдаёт день
     func getDay() -> Int {
         return day + 1
     }
     
+    // Выдаёт месяц
     func getMonth() -> Int {
         return month + 1
     }
     
+    // Выдаёт год
     func getYear() -> Int {
         return year
     }
     
+    // Выставляет день
     func setDay(_ newDay: Int){
-        if newDay > 31 || newDay < 1 {
+        if newDay > 31 {
             day = 0
         }
         day = newDay - 1
     }
     
+    // Выставляет месяц
     func setMonth(_ newMonth: Int){
         if newMonth > 12 || newMonth < 1 {
            month = 0
@@ -64,37 +70,43 @@ class Date {
         month = newMonth - 1
     }
     
+    // Выставляет год
     func setYear(_ newYear: Int) {
 
         year = newYear
     }
     
+    // Добавляет день (и дополнительно месяц)
     func addDay(_ newDay: Int) {
-        if month == 1 && !leapyear(y: year) {
+        if month == 1 && !leapyear(y: year) {   // Февраль (невисокосный год)
             addMonth((day + newDay) / 28)
             day = (day + newDay) % 28
-        } else if month == 1 && leapyear(y: year) {
+        } else if month == 1 && leapyear(y: year) { // Февраль (високосный год)
             addMonth((day + newDay) / 29)
             day = (day + newDay) % 29
-        } else if month == 3 || month == 5 || month == 8 || month == 10 {
+        } else if month == 3 || month == 5 || month == 8 || month == 10 { // Месяцы по 30 дней
             addMonth((day + newDay) / 30)
             day = (day + newDay) % 30
         } else {
-            addMonth((day + newDay) / 31)
+            addMonth((day + newDay) / 31)   // Месяцы по 31 день
             day = (day + newDay) % 31
         }
     }
     
+    // Добавляет месяц (и дополнительно год)
     func addMonth(_ newMonth: Int) {
         month = month + newMonth
         addYear(month / 12)
         month = month % 12
     }
     
+    
+    // Добавляет год
     func addYear(_ newYear: Int) {
         year = year + newYear
     }
     
+    // Выдаёт полную дату в виде текста
     func dateString() -> String {
         return String(format: "%02d.%02d.%02d", day + 1, month + 1, year)
     }
