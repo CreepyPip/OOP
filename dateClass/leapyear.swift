@@ -28,7 +28,7 @@ func checkday(d:Int, m:Int, y:Int) -> Bool{
 }
 
 func checkmonth(m:Int) -> Bool {
-    if m <= 12{
+    if m <= 12 || m >= 0 {
         return true
     } else {
         return false

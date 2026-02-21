@@ -14,9 +14,9 @@ int main()
 
 	Date d1(20, 2, 2026);
 
-	d1.addDay(d);
-	d1.addMonth(m);
-	d1.addYear(y);
+	d1.setDay(d);
+	d1.setMonth(m);
+	d1.setYear(y);	
 
 	cout << d1.DateString() << endl;
 
@@ -27,9 +27,9 @@ int main()
 	cout << "Год: ";
 	cin >> y;
 
-	d1.setDay(d);
-	d1.setMonth(m);
-	d1.setYear(y);	
+	d1.addDay(d);
+	d1.addMonth(m);
+	d1.addYear(y);
 
 	cout << "День: " << d1.getDay() << endl;
 	cout << "Месяц: " << d1.getMonth() << endl;

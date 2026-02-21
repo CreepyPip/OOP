@@ -189,7 +189,7 @@ float ResMas(int n, fid *a)
 template<typename fid>
 bool leapyear(fid y)
 {
-	if (y % 4 || y == 0)
+	if (y % 4 == 0 || y == 0)
 	{
 		return 1;
 	}

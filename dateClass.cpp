@@ -2,6 +2,8 @@
 
 Date::Date(): day(1), month(1), year(0) {}
 
+
+// unsigned short - тип данных, хранит только целые числа
 Date::Date(unsigned short day): month(1), year(0) 
 {
 	setDay(day);
@@ -23,6 +25,8 @@ Date::Date(unsigned short day, unsigned short month, unsigned short year)
 	setYear(year);
 }
 
+
+// Выдаёт день
 unsigned short Date::getDay() const{
 	return day + 1;
 }
@@ -35,15 +39,17 @@ unsigned short Date::getYear() const{
 	return year;
 }
 
+
+// Выставляет день
 void Date::setDay(unsigned short newDay){
 	if (newDay > 31 || newDay < 1)
-        throw invalid_argument("1 <= newDay <= 31");
+        month = 0;
     day = newDay - 1;
 }
 
 void Date::setMonth(unsigned short newMonth){
 	if (newMonth > 12 || newMonth < 1)
-        throw invalid_argument("1 <= newMonth <= 12");
+        month = 0;
     month = newMonth - 1;
 }
 
@@ -52,6 +58,8 @@ void Date::setYear(unsigned short newYear){
 
 }
 
+
+// Выставляет день
 void Date::addDay(unsigned short newDay){
 	if (month == 2 && !leapyear(year))
 	{
@@ -85,6 +93,8 @@ void Date::addYear(unsigned short newYear){
 	year = (year + newYear);
 }
 
+
+// Выдаёт дату в текстовом формате
 string Date::DateString() const{
-	return format("{:02d}.{:02d}.{:02d}", day + 1, month + 1, year);
+	return format("{:02d}.{:02d}.{:04d}", day + 1, month + 1, year);
 }
