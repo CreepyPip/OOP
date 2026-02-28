@@ -714,7 +714,7 @@
                                 <rect key="frame" x="209" y="287" width="62" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Дата" id="g20-hW-xTw">
-                                    <font key="font" metaFont="system" size="26"/>
+                                    <font key="font" size="26" name="AppleSDGothicNeo-Regular"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
@@ -772,7 +772,7 @@
                                 <rect key="frame" x="78" y="238" width="324" height="41"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="01.01.00" id="353-KO-Vu8">
-                                    <font key="font" size="16" name="AppleColorEmoji"/>
+                                    <font key="font" size="23" name="AppleSDGothicNeo-Regular"/>
                                     <color key="textColor" name="controlDarkShadowColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
@@ -781,7 +781,7 @@
                                 <rect key="frame" x="80" y="147" width="44" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="center" drawsBackground="YES" id="uqb-fB-UjA">
-                                    <font key="font" size="15" name="AppleColorEmoji"/>
+                                    <font key="font" size="23" name="AppleSDGothicNeo-Regular"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
@@ -790,7 +790,7 @@
                                 <rect key="frame" x="203" y="147" width="44" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="center" drawsBackground="YES" id="1ie-N7-59L">
-                                    <font key="font" size="15" name="AppleColorEmoji"/>
+                                    <font key="font" size="23" name="AppleSDGothicNeo-Regular"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
@@ -799,7 +799,7 @@
                                 <rect key="frame" x="312" y="147" width="88" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="center" drawsBackground="YES" id="nZF-J6-rYN">
-                                    <font key="font" size="15" name="AppleColorEmoji"/>
+                                    <font key="font" size="23" name="AppleSDGothicNeo-Regular"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>

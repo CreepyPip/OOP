@@ -16,8 +16,8 @@ class Date {
     
     // Присваивает начальные значения
     init() {
-        self.day = 0
-        self.month = 0
+        self.day = 1
+        self.month = 1
         self.year = 0
     }
     
@@ -56,15 +56,22 @@ class Date {
     
     // Выставляет день
     func setDay(_ newDay: Int){
-        if newDay > 31 {
-            day = 0
+        if month == 1 && !leapyear(y: year) && newDay <= 29 {   // Февраль (невисокосный год)
+            day = newDay - 1
+        } else if month == 1 && leapyear(y: year) && newDay <= 30 { // Февраль (високосный год)
+            day = newDay - 1
+        } else if ((month == 3 || month == 5 || month == 8 || month == 10) && newDay <= 31) { // Месяцы по 30 дней
+            day = newDay - 1
+        } else if day <= 32 && (month == 0 || month == 2 || month == 4 || month == 6 || month == 7 || month == 9 || month == 11) {
+            day = newDay - 1
+        } else {
+            day = 30
         }
-        day = newDay - 1
     }
     
     // Выставляет месяц
     func setMonth(_ newMonth: Int){
-        if newMonth > 12 || newMonth < 1 {
+        if newMonth > 12 || newMonth <= 0 {
            month = 0
         }
         month = newMonth - 1
@@ -84,7 +91,7 @@ class Date {
         } else if month == 1 && leapyear(y: year) { // Февраль (високосный год)
             addMonth((day + newDay) / 29)
             day = (day + newDay) % 29
-        } else if month == 3 || month == 5 || month == 8 || month == 10 { // Месяцы по 30 дней
+        } else if month == 2 || month == 4 || month == 7 || month == 9 { // Месяцы по 30 дней
             addMonth((day + newDay) / 30)
             day = (day + newDay) % 30
         } else {

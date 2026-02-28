@@ -16,12 +16,14 @@ class ViewController: NSViewController {
     @IBOutlet weak var SaveMonth: NSTextField!
     @IBOutlet weak var SaveYear: NSTextField!
     
-
+    // Выставить дату
     @IBAction func SetButton(_ sender: NSButton) {
+        // Принимает значения из полей
         let day = DayField.stringValue
         let month = MonthField.stringValue
         let year = YearField.stringValue
         
+        // Перевод в int
         guard let dayint = Int(day),
             let monthint = Int(month),
             let yearint = Int(year) else {
@@ -30,27 +32,32 @@ class ViewController: NSViewController {
         
         let date = Date()
         
-        if checkday(d: dayint, m: monthint, y: yearint) {
-            if checkmonth(m: monthint){
+        // Вывод на экран даты с дополнительной проверкой (кроме самого класса)
+        if checkday(d: dayint, m: monthint, y: yearint) && checkmonth(m: monthint) {
                 
                 date.setDay(dayint)
                 date.setMonth(monthint)
                 date.setYear(yearint)
-                
+            
+                // Запоминание даты программой
                 DataLabel.stringValue = date.dateString()
                 SaveDay.stringValue = day
                 SaveMonth.stringValue = month
                 SaveYear.stringValue = year
-            }
+        
         } else {
             DataLabel.stringValue = "Ошибка"
         }
     }
+    
+    // Добавление к существующей дате
     @IBAction func AddButton(_ sender: NSButton) {
+        // Принимает значения из полей
         let day = DayField.stringValue
         let month = MonthField.stringValue
         let year = YearField.stringValue
         
+        // Перевод в int
         guard let dayint = Int(day),
             let monthint = Int(month),
             let yearint = Int(year) else {
@@ -59,6 +66,7 @@ class ViewController: NSViewController {
         
         let date = Date()
         
+        // 
         let loadday = SaveDay.stringValue
         let loadmonth = SaveMonth.stringValue
         let loadyear = SaveYear.stringValue

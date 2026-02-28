@@ -10,17 +10,20 @@ import Foundation
 
 // Проверка на високосный год
 func leapyear(y:Int) -> Bool{
-    return (y % 4 == 0 || y == 0)
+    if y % 4 == 0 || y == 0 {
+        return true
+    }else{
+        return false}
 }
 
 func checkday(d:Int, m:Int, y:Int) -> Bool{
-    if m == 1 && !leapyear(y: y) && d <= 28 {   // Февраль (невисокосный год)
+    if m == 2 && !leapyear(y: y) && d <= 28 {   // Февраль (невисокосный год)
         return true
-    } else if m == 1 && leapyear(y: y) && d <= 29 { // Февраль (високосный год)
+    } else if m == 2 && leapyear(y: y) && d <= 29 { // Февраль (високосный год)
         return true
-    } else if ((m == 3 || m == 5 || m == 8 || m == 10) && d <= 30) { // Месяцы по 30 дней
+    } else if ((m == 4 || m == 6 || m == 9 || m == 11) && d <= 30) { // Месяцы по 30 дней
         return true
-    } else if d <= 31 {
+    } else if d <= 31 && (m == 1 || m == 3 || m == 5 || m == 7 || m == 8 || m == 10 || m == 12) {
         return true
     } else {
         return false
@@ -28,7 +31,7 @@ func checkday(d:Int, m:Int, y:Int) -> Bool{
 }
 
 func checkmonth(m:Int) -> Bool {
-    if m <= 12 || m >= 0 {
+    if m <= 12 || m > 0 {
         return true
     } else {
         return false
