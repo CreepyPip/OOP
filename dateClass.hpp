@@ -2,12 +2,14 @@
 
 class Date
 {
-	unsigned short day;
+	// Переменные (можно использовать только внутри класса)
+	unsigned short day;	// unsigned short - тип данных, хранит только целые положительные числа
 
     unsigned short month;
 
     unsigned short year;
 
+// Методы, которые можно использовать вне класса
 public:
 
 	Date();
