@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "autoengines.cpp"
+            timestampString = "793944955.077666"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "15"
+            endingLineNumber = "15"
+            landmarkName = "engines::engines(unsigned short level, unsigned short displacement, unsigned short weight, unsigned short consumption, unsigned short horsepower)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "engines::engines(unsigned short, unsigned short, unsigned short, unsigned short, unsigned short)"
+                  moduleName = "autoengines"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ananas/Documents/OOP-main/autoengines/autoengines.cpp"
+                  timestampString = "793598189.119496"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "16"
+                  endingLineNumber = "16"
+                  offsetFromSymbolStart = "61">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "engines::engines(unsigned short, unsigned short, unsigned short, unsigned short, unsigned short)"
+                  moduleName = "autoengines"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ananas/Documents/OOP-main/autoengines/autoengines.cpp"
+                  timestampString = "793598189.123624"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "15"
+                  endingLineNumber = "15"
+                  offsetFromSymbolStart = "61">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>
