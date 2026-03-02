@@ -19,11 +19,11 @@ int main() {
     
     ICE i1(4, 1, 30 , 1100, 5, 98);
     electric e1(1, 31 , 1900, 2, 102);
-    hybrid h1(4, "parallel");
+    hybrid h1("parallel");
     
-    h1.setDisplacement(a);
     e1.refuel(b);
     i1.refuelFull();
+    h1.setDisplacement(a);
     
     cout << i1.getLevelString() << endl;
     cout << e1.getLevelString() << endl << h1.getDisplacementString() << endl;

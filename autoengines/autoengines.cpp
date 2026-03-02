@@ -100,12 +100,12 @@ ICE::ICE(unsigned short cylinders, unsigned short level, unsigned short displace
 
 // Выдаёт объём бака в виде текста с единицей измерения
 string ICE::getDisplacementString() const {
-    return to_string(displacement) + " " + measure;
+    return to_string(displacement) + " " + measureGasoline;
 }
 
 // Выдаёт количество топлива в виде текста с единицей измерения
 string ICE::getLevelString() const {
-    return to_string(level) + " " + measure;
+    return to_string(level) + " " + measureGasoline;
 }
 
 // Выставляет количество цилиндров
@@ -129,20 +129,20 @@ electric::electric(unsigned short level, unsigned short displacement, unsigned s
 
 // Выдаёт объём батареи в виде текста с единицей измерения
 string electric::getDisplacementString() const {
-    return to_string(displacement) + " " + measure;
+    return to_string(displacement) + " " + measureElectric;
 }
 
 // Выдаёт заряд в виде текста с единицей измерения
 string electric::getLevelString() const {
-    return to_string(level) + " " + measure;
+    return to_string(level) + " " + measureElectric;
 }
 
 // Контроллер гибрида, вводит заданное по умолчанию количество цилиндров и тип гибрида
-hybrid::hybrid(): cylinders(1), type("parallel"){
+hybrid::hybrid():type("parallel"){
 }
 
 // Контроллер гибрида, вводит введённое пользователем количество цилиндров и тип гибрида
-hybrid::hybrid(unsigned short cylinders, string type){
+hybrid::hybrid(string type){
     setCylinders(cylinders);
     setType(type);
 }

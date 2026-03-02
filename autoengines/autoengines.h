@@ -16,15 +16,16 @@ using namespace my;
 
 // Основной класс
 class engines {
-protected:
-    
+
+public:
     // Переменные, которые используются только в классе
     unsigned short level; // Уровень топлива или заряда
     unsigned short displacement;    // Объём бака
     unsigned short weight;  // Вес двигателя
     unsigned short consumption; // Расход
     unsigned short horsepower; // Лошадиные силы
-    
+  
+protected:
     engines();
     engines(unsigned short level, unsigned short displacement, unsigned short weight, unsigned short consumption, unsigned short horsepower);
 public:
@@ -47,10 +48,10 @@ public:
     double fuelDistance();
 };
 
-class ICE: public engines {
-private:
+class ICE: virtual public engines {
+protected:
     unsigned short cylinders;
-    string measure = "liters";
+    string measureGasoline = "liters";
     
 public:
     ICE();
@@ -61,9 +62,9 @@ public:
     unsigned short getCylinders() const;
 };
 
-class electric: public engines {
-private:
-    string measure = "kWh";
+class electric: virtual public engines {
+protected:
+    string measureElectric = "kWh";
     
 public:
     electric(unsigned short level, unsigned short displacement, unsigned short weight, unsigned short consumption, unsigned short horsepower);
@@ -71,9 +72,8 @@ public:
     string getLevelString() const;
 };
 
-class hybrid: public engines {
+class hybrid: public ICE, public electric {
 private:
-    unsigned short cylinders;
     string type;
     string measureElectric = "kWh";
     string measureGasoline = "liters";
@@ -81,7 +81,7 @@ private:
     
 public:
     hybrid();
-    hybrid(unsigned short cylinders, string type);
+    hybrid(string type);
     hybrid(unsigned short cylinders, string type, unsigned short level, unsigned short displacement, unsigned short weight, unsigned short consumption, unsigned short horsepower);
     void setType(string type);
     void setCylinders(unsigned short cylinders);
