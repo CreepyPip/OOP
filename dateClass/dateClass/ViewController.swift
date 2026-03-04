@@ -6,8 +6,15 @@
 //  Copyright © 2026 Семён. All rights reserved.
 //
 
+
 import Cocoa
 class ViewController: NSViewController {
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        Tests()
+    }
+    
     @IBOutlet weak var DayField: NSTextField!
     @IBOutlet weak var MonthField: NSTextField!
     @IBOutlet weak var YearField: NSTextField!
@@ -15,7 +22,6 @@ class ViewController: NSViewController {
     @IBOutlet weak var SaveDay: NSTextField!
     @IBOutlet weak var SaveMonth: NSTextField!
     @IBOutlet weak var SaveYear: NSTextField!
-    
     // Выставить дату
     @IBAction func SetButton(_ sender: NSButton) {
         // Принимает значения из полей

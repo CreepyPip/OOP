@@ -21,18 +21,18 @@ class Date {
         self.year = 0
     }
     
-    convenience init(day: Int) {
+    convenience init(_ day: Int) {
         self.init()
         setDay(day)
     }
     
-    convenience init(day: Int, month: Int) {
+    convenience init(_ day: Int, _ month: Int) {
         self.init()
         setDay(day)
         setMonth(month)
     }
     
-    convenience init(day: Int, month: Int, year: Int) {
+    convenience init(_ day: Int, _ month: Int, _ year: Int) {
         self.init()
         setDay(day)
         setMonth(month)

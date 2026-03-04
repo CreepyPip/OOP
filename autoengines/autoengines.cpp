@@ -38,25 +38,25 @@ unsigned short engine::getConsumption() const {    // Расход
 }
 
 // Сеттеры
-void engine::setLevel(unsigned short newLevel){
+void engine::setLevel(unsigned short newLevel){ // Топливо
     if (newLevel <= displacement) {
         level = newLevel;
     }
 }
 
-void engine::setDisplacement(unsigned short newDisplacement){
+void engine::setDisplacement(unsigned short newDisplacement){ // Объём бака
     displacement = newDisplacement;
 }
 
-void engine::setWeight(unsigned short newWeight){
+void engine::setWeight(unsigned short newWeight){ // Вес
     weight = newWeight;
 }
 
-void engine::setHP(unsigned short newHP){
+void engine::setHP(unsigned short newHP){ // Лошадинные силы
     horsepower = newHP;
 }
 
-void engine::setConsumption(unsigned short newConsumption){
+void engine::setConsumption(unsigned short newConsumption){ // Расход
     consumption = newConsumption;
 }
 
@@ -137,9 +137,7 @@ void electric::setWear(unsigned short newWear) {
         wear = newWear;
     }
     else
-    {
         wear = 100;
-    }
 }
 
 // Выдаёт износ батареи
@@ -147,14 +145,14 @@ unsigned short electric::getWear() const {
     return wear;
 }
 
-void electric::setLevel(unsigned short newLevel){
+// Выставляет уровень заряда (только для электрических)
+void electric::setLevel(unsigned short newLevel) {
     double dWear = getWear();
     if (newLevel <= displacement * dWear/100) {
         level = newLevel;
     }
-    else{
+    else
         level = displacement * dWear/100;
-    }
 }
 
 // Пользователь добавляет уровень заряда
@@ -163,12 +161,10 @@ void electric::refuel(unsigned short newLevel){
     if (level + newLevel <= displacement * dWear/100) {
         level = level + newLevel;
     } else
-    {
         level = displacement * dWear/100;
-    }
 }
 
-// Заполняет уровень топлива до максимума (до объёма бака)
+// Заполняет уровень заряда до максимума (до объёма батареи)
 void electric::refuelFull(){
     double dWear = getWear();
     level = displacement * dWear/100;

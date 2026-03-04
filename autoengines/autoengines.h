@@ -29,7 +29,8 @@ protected:
     engine();
     engine(unsigned short level, unsigned short displacement, unsigned short weight, unsigned short consumption, unsigned short horsepower);
 public:
-    void setLevel(unsigned short newLevel);
+    // virtual нужно для того, чтобы метод переиспользовался в подклассах
+    virtual void setLevel(unsigned short newLevel);
     void setDisplacement(unsigned short newDisplacement);
     void setWeight(unsigned short newWeight);
     void setConsumption(unsigned short newConsumption);
@@ -41,8 +42,8 @@ public:
     unsigned short getConsumption() const;
     unsigned short getHP() const;
     
-    void refuel(unsigned short newLevel);
-    void refuelFull();
+    virtual void refuel(unsigned short newLevel);
+    virtual void refuelFull();
     
     double maxDistance();
     double fuelDistance();
@@ -74,9 +75,9 @@ public:
     string getDisplacementString() const;
     string getLevelString() const;
     unsigned short getWear() const;
-    void setLevel(unsigned short newLevel);
-    void refuel(unsigned short newLevel);
-    void refuelFull();
+    void setLevel(unsigned short newLevel) override;
+    void refuel(unsigned short newLevel) override;
+    void refuelFull() override;
 };
 
 class hybrid: public ICE, public electric {
