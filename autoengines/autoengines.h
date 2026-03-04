@@ -15,7 +15,7 @@ using namespace std;
 using namespace my;
 
 // Основной класс
-class engines {
+class engine {
 
 public:
     // Переменные, которые используются только в классе
@@ -26,8 +26,8 @@ public:
     unsigned short horsepower; // Лошадиные силы
   
 protected:
-    engines();
-    engines(unsigned short level, unsigned short displacement, unsigned short weight, unsigned short consumption, unsigned short horsepower);
+    engine();
+    engine(unsigned short level, unsigned short displacement, unsigned short weight, unsigned short consumption, unsigned short horsepower);
 public:
     void setLevel(unsigned short newLevel);
     void setDisplacement(unsigned short newDisplacement);
@@ -48,7 +48,7 @@ public:
     double fuelDistance();
 };
 
-class ICE: virtual public engines {
+class ICE: virtual public engine {
 protected:
     unsigned short cylinders;
     string measureGasoline = "liters";
@@ -62,14 +62,21 @@ public:
     unsigned short getCylinders() const;
 };
 
-class electric: virtual public engines {
+class electric: virtual public engine {
 protected:
-    string measureElectric = "kWh";
+    string measureElectric = "kWh"; // Единицы измерения атареи
+    unsigned short wear = 100;  // Износ батареи
     
 public:
-    electric(unsigned short level, unsigned short displacement, unsigned short weight, unsigned short consumption, unsigned short horsepower);
+    electric();
+    electric(unsigned short wear, unsigned short level, unsigned short displacement, unsigned short weight, unsigned short consumption, unsigned short horsepower);
+    void setWear(unsigned short newWear);
     string getDisplacementString() const;
     string getLevelString() const;
+    unsigned short getWear() const;
+    void setLevel(unsigned short newLevel);
+    void refuel(unsigned short newLevel);
+    void refuelFull();
 };
 
 class hybrid: public ICE, public electric {
@@ -82,7 +89,7 @@ private:
 public:
     hybrid();
     hybrid(string type);
-    hybrid(unsigned short cylinders, string type, unsigned short level, unsigned short displacement, unsigned short weight, unsigned short consumption, unsigned short horsepower);
+    hybrid(unsigned short cylinders, string type, unsigned short wear, unsigned short level, unsigned short displacement, unsigned short weight, unsigned short consumption, unsigned short horsepower);
     void setType(string type);
     void setCylinders(unsigned short cylinders);
     unsigned short getCylinders() const;
