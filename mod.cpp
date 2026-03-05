@@ -73,7 +73,7 @@ double* FileMas(const string &sf)
 	ifstream F(sf);
 
 	int n = nFile(sf);
-	F >> n;			// передать n по ссылке
+	F >> n;	
 	double *a = new double[n];
 
     	for (int i = 0; i < n; i++) {

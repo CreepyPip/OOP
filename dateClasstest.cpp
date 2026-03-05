@@ -1,9 +1,12 @@
-#include "dateClass.cpp"
+//#include "dateClass.cpp"
+#include "dateTest.cpp"
 
 // Файл для проверки работы класса
 
 int main()
 {
+
+	Tests();
 
 	double n = 0;
 	double d, m, y;
