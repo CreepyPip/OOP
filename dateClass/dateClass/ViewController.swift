@@ -40,10 +40,10 @@ class ViewController: NSViewController {
         
         // Вывод на экран даты с дополнительной проверкой (кроме самого класса)
         if checkday(d: dayint, m: monthint, y: yearint) && checkmonth(m: monthint) {
-                
-                date.setDay(dayint)
+            
                 date.setMonth(monthint)
                 date.setYear(yearint)
+                date.setDay(dayint)
             
                 // Запоминание даты программой
                 DataLabel.stringValue = date.dateString()
@@ -83,13 +83,13 @@ class ViewController: NSViewController {
                 return
         }
         
-        date.setDay(ldint)
+
         date.setMonth(lmint)
         date.setYear(lyint)
         
-        date.addDay(dayint)
         date.addMonth(monthint)
         date.addYear(yearint)
+        date.addDay(dayint)
         
         DataLabel.stringValue = date.dateString()
         

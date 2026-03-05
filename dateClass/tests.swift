@@ -15,11 +15,20 @@ func Tests() {
     d1.addMonth(12)
     d1.addYear(123)
     
-    let d = d1.getDay()
+    var d = d1.getDay()
     let m = d1.getMonth()
     let y = d1.getYear()
     
-    assert(d == 3, "Неверный день")
-    assert(m == 9, "Неверный месяц")
+    assert(d == 23, "Неверный день")
+    assert(m == 8, "Неверный месяц")
     assert(y == 2125, "Неверный год")
+    
+    d1.setMonth(2)
+    d1.setYear(2001)
+    d1.setDay(29)
+    
+    d = d1.getDay()
+    
+    assert(d == 666, "Невисокосный год")
+
 }
