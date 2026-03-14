@@ -62,5 +62,41 @@ int main()
     Fout << d1.getMonth() << endl;
     Fout << d1.getYear() << endl;
     Fout.close();
-    cout << ("Данные введены в файл");
+    cout << ("Данные введены в файл") << endl;
+
+
+    // Создание динамического объекта
+    Date* dynamic = new Date(12, 11, 2011);
+
+    // Проверка работы динамического объекта
+    dynamic -> addDay(12);
+    cout << "День: " << dynamic -> getDay() << endl;
+
+    delete dynamic;
+
+
+    // Создание массива статических объектов
+    Date dm[3] = {
+    	Date(12, 12, 2012),
+    	Date(29, 02, 2016),
+    	Date(13, 03, 2026),
+    };
+
+    for (int i = 0; i < 3; ++i)
+    {
+    	cout << "День: " << dm[i].getDay() << endl;
+    };
+
+
+    // Создание массива динамических объектов
+    Date* ddm[3];
+    	ddm[0] = new Date(13, 03, 2026);
+    	ddm[1] = new Date(29, 02, 2016);
+    	ddm[2] = new Date(12, 12, 2012);
+
+    for (int i = 0; i < 3; ++i)
+    {
+    	cout << "Mecяц: " << ddm[i] -> getMonth() << endl;
+    	delete ddm[i];
+    };
 }
