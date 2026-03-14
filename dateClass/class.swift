@@ -72,9 +72,11 @@ class Date {
     // Выставляет месяц
     func setMonth(_ newMonth: Int){
         if newMonth > 12 || newMonth <= 0 {
-           month = 0
-        }
+           month = 999
+        } else
+        {
         month = newMonth - 1
+        }
     }
     
     // Выставляет год

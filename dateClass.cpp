@@ -1,23 +1,23 @@
 #include "dateClass.hpp"
 
-// Основной контроллер с заданными данными
+// Основной конструктор с заданными данными
 Date::Date(): day(1), month(1), year(0) {}
 
 
-// Контроллер, пользователь может вводить день
+// Конструктор, пользователь может вводить день
 Date::Date(unsigned short day): month(1), year(0) 
 {
 	setDay(day);
 }
 
-// Контроллер, пользователь может вводить день и месяц
+// Конструктор, пользователь может вводить день и месяц
 Date::Date(unsigned short day, unsigned short month): year(0) 
 {
 	setMonth(month);
 	setDay(day);
 }
 
-// Контроллер, пользователь может вводить день, месяц и год
+// Конструктор, пользователь может вводить день, месяц и год
 Date::Date(unsigned short day, unsigned short month, unsigned short year) 
 {
 

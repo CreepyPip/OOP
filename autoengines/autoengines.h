@@ -15,6 +15,8 @@ using namespace std;
 using namespace my;
 
 // Основной класс
+// Даёт наследованным классам использовать методы, нет возможности использовать вне наследованных классов
+// Есть возможность выставить (уровень топлива, объём бака, вес, расход, силы), заправить и высчитать расстояние на уровне топлива
 class engine {
 
 public:
@@ -49,6 +51,8 @@ public:
     double fuelDistance();
 };
 
+// Класс (Двигатель внутреннего сгорания)
+// Добавляет методы (выставить кол-во цилиндров) и получения уровня топлива и объёма бака с единицами измерения
 class ICE: virtual public engine {
 protected:
     unsigned short cylinders;
@@ -63,6 +67,9 @@ public:
     unsigned short getCylinders() const;
 };
 
+// Класс (Электродвигатель)
+// Добавляет методы (выставить износ батареи) и получения уровня заряда и объёма батареи с единицами измерения с учётом износа
+// Переиспользует методы (refuel и setLevel)
 class electric: virtual public engine {
 protected:
     string measureElectric = "kWh"; // Единицы измерения атареи
@@ -80,6 +87,9 @@ public:
     void refuelFull() override;
 };
 
+// Наследует классы ICE и electric
+// Также может использоваться с методами engines
+// Появляются методы связанные с типами гибрида
 class hybrid: public ICE, public electric {
 private:
     string type;
