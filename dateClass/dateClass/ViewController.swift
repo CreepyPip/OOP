@@ -8,6 +8,7 @@
 
 
 import Cocoa
+//
 class ViewController: NSViewController {
     
     override func viewDidLoad() {
@@ -22,6 +23,11 @@ class ViewController: NSViewController {
     @IBOutlet weak var SaveDay: NSTextField!
     @IBOutlet weak var SaveMonth: NSTextField!
     @IBOutlet weak var SaveYear: NSTextField!
+    
+    // date
+    // создание
+    let date = Date()
+    
     // Выставить дату
     @IBAction func SetButton(_ sender: NSButton) {
         // Принимает значения из полей
@@ -35,8 +41,6 @@ class ViewController: NSViewController {
             let yearint = Int(year) else {
                 return
         }
-        
-        let date = Date()
         
         // Вывод на экран даты с дополнительной проверкой (кроме самого класса)
         if checkday(d: dayint, m: monthint, y: yearint) && checkmonth(m: monthint) {
@@ -69,8 +73,6 @@ class ViewController: NSViewController {
             let yearint = Int(year) else {
                 return
         }
-        
-        let date = Date()
         
         // 
         let loadday = SaveDay.stringValue

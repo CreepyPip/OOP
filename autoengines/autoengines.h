@@ -31,7 +31,8 @@ protected:
     engine();
     engine(unsigned short level, unsigned short displacement, unsigned short weight, unsigned short consumption, unsigned short horsepower);
 public:
-    // virtual нужно для того, чтобы метод переиспользовался в подклассах
+    // virtual нужно для того, чтобы метод переопределялся в подклассах
+    // Полиморфизм способность объектов с одинаковыми методами реализовывать различное поведение
     virtual void setLevel(unsigned short newLevel);
     void setDisplacement(unsigned short newDisplacement);
     void setWeight(unsigned short newWeight);
@@ -72,7 +73,7 @@ public:
 // Переиспользует методы (refuel и setLevel)
 class electric: virtual public engine {
 protected:
-    string measureElectric = "kWh"; // Единицы измерения атареи
+    string measureElectric = "kWh"; // Единицы измерения батареи
     unsigned short wear = 100;  // Износ батареи
     
 public:

@@ -695,12 +695,12 @@
                         </connections>
                     </window>
                     <connections>
-                        <segue destination="XfG-lQ-9wD" kind="relationship" relationship="window.shadowedContentViewController" id="cq2-FE-JQM"/>
+                        <segue destination="XfG-lQ-9wD" kind="relationship" relationship="window.shadowedContentViewController" id="NN6-Q5-SjU"/>
                     </connections>
                 </windowController>
                 <customObject id="Oky-zY-oP4" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="15.5" y="310"/>
+            <point key="canvasLocation" x="15" y="319"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="hIz-AP-VOD">
@@ -718,6 +718,9 @@
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
+                                <connections>
+                                    <outlet property="nextKeyView" destination="6Yu-eT-6bc" id="6mQ-ZE-6Lg"/>
+                                </connections>
                             </textField>
                             <scrollView wantsLayer="YES" appearanceType="aqua" fixedFrame="YES" horizontalLineScroll="35" horizontalPageScroll="10" verticalLineScroll="35" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" horizontalScrollElasticity="none" translatesAutoresizingMaskIntoConstraints="NO" id="nRW-JH-0KB">
                                 <rect key="frame" x="20" y="81" width="380" height="420"/>
@@ -776,6 +779,9 @@ DQ
                                 </connections>
                             </button>
                         </subviews>
+                        <connections>
+                            <outlet property="nextKeyView" destination="VWS-Vs-emJ" id="elE-FE-cJb"/>
+                        </connections>
                     </view>
                     <connections>
                         <outlet property="Button" destination="6Yu-eT-6bc" id="BSW-Ep-yow"/>
@@ -785,7 +791,7 @@ DQ
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="15" y="1016"/>
+            <point key="canvasLocation" x="-395" y="938"/>
         </scene>
         <!--Window Controller-->
         <scene sceneID="3tR-cF-GiL">
