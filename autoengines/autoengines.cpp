@@ -193,9 +193,14 @@ hybrid::hybrid(string type){
 
 // Конструктор гибрида, вводит введённое пользователем количество цилиндров, тип гибрида и данные из engines
 hybrid::hybrid(unsigned short cylinders, string type, unsigned short wear, unsigned short level, unsigned short displacement, unsigned short weight, unsigned short consumption, unsigned short horsepower){
-    electric(wear, level, displacement, weight, consumption, horsepower);
     setCylinders(cylinders);
     setType(type);
+    setWear(wear);
+    setLevel(level);
+    setDisplacement(displacement);
+    setWeight(weight);
+    setConsumption(consumption);
+    setHP(horsepower);
 }
 
 // Выдаёт тип гибрида (последовательный или параллельный)

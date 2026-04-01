@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		031426F02F7373A600082B9D /* regex5.7.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031426EF2F7373A600082B9D /* regex5.7.swift */; };
+		035B0EEF2F776D10004DDFF0 /* asserts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035B0EEE2F776D10004DDFF0 /* asserts.swift */; };
 		0372C5C02F64F597000EAC31 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0372C5BF2F64F597000EAC31 /* AppDelegate.swift */; };
 		0372C5C22F64F597000EAC31 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0372C5C12F64F597000EAC31 /* ViewController.swift */; };
 		0372C5C42F64F599000EAC31 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0372C5C32F64F599000EAC31 /* Assets.xcassets */; };
@@ -36,6 +37,7 @@
 
 /* Begin PBXFileReference section */
 		031426EF2F7373A600082B9D /* regex5.7.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = regex5.7.swift; sourceTree = "<group>"; };
+		035B0EEE2F776D10004DDFF0 /* asserts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = asserts.swift; sourceTree = "<group>"; };
 		0372C5BC2F64F597000EAC31 /* chat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = chat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0372C5BF2F64F597000EAC31 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0372C5C12F64F597000EAC31 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -80,6 +82,7 @@
 		0372C5B32F64F597000EAC31 = {
 			isa = PBXGroup;
 			children = (
+				035B0EEE2F776D10004DDFF0 /* asserts.swift */,
 				031426EF2F7373A600082B9D /* regex5.7.swift */,
 				03C56DAC2F67C8CA00D6CA42 /* class.swift */,
 				0372C5BE2F64F597000EAC31 /* chat */,
@@ -261,6 +264,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				03C56DAD2F67C8CA00D6CA42 /* class.swift in Sources */,
+				035B0EEF2F776D10004DDFF0 /* asserts.swift in Sources */,
 				0372C5C22F64F597000EAC31 /* ViewController.swift in Sources */,
 				031426F02F7373A600082B9D /* regex5.7.swift in Sources */,
 				0372C5C02F64F597000EAC31 /* AppDelegate.swift in Sources */,

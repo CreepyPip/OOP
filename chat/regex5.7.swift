@@ -18,4 +18,3 @@ struct regex {
         return regex.firstMatch(in: text, options: [], range: range) != nil
     }
 }
-

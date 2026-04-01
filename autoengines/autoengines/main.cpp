@@ -44,4 +44,12 @@ int main() {
     
     // Вывод на экран типа гибрида и объём батареи электроавто
     cout << h1.getType() << endl << e1.getDisplacementString() << endl;
+
+    // Пример использования абстрактного метода
+    engine* eng = new hybrid(4, "parallel", 40, 10, 30 , 1100, 5, 98);
+    cout << endl << eng -> getDisplacementString() << endl;
+    
+    // Пример использования dynamic_cast
+    // Нужен для использования методов, не являющихся частью основного класса
+    cout << dynamic_cast<electric*>(eng) -> getWear() << endl;
 }

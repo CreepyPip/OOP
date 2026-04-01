@@ -5,6 +5,17 @@
 //  Created by Семён on 21.02.2026.
 //  Copyright © 2026 Семён. All rights reserved.
 //
+//
+/* Пример абстрактного метода:
+ // В основном классе
+ virtual void makeSound() = 0;
+ 
+ // Реализация в наследованном классе
+ void makeSound() override {
+ cout << "Рык" << endl;
+ }
+ */
+ 
 
 #pragma once
 #include <stdio.h>
@@ -50,6 +61,9 @@ public:
     
     double maxDistance();
     double fuelDistance();
+    
+    // Абстрактный метод
+    virtual string getDisplacementString() const = 0;
 };
 
 // Класс (Двигатель внутреннего сгорания)
@@ -62,7 +76,7 @@ protected:
 public:
     ICE();
     ICE(unsigned short cylinders, unsigned short level, unsigned short displacement, unsigned short weight, unsigned short consumption, unsigned short horsepower);
-    string getDisplacementString() const;
+    string getDisplacementString() const override;
     string getLevelString() const;
     void setCylinders(unsigned short newCylinders);
     unsigned short getCylinders() const;
@@ -80,7 +94,7 @@ public:
     electric();
     electric(unsigned short wear, unsigned short level, unsigned short displacement, unsigned short weight, unsigned short consumption, unsigned short horsepower);
     void setWear(unsigned short newWear);
-    string getDisplacementString() const;
+    string getDisplacementString() const override;
     string getLevelString() const;
     unsigned short getWear() const;
     void setLevel(unsigned short newLevel) override;
@@ -105,7 +119,7 @@ public:
     void setType(string type);
     void setCylinders(unsigned short cylinders);
     unsigned short getCylinders() const;
-    string getDisplacementString() const;
+    string getDisplacementString() const override;
     string getLevelString() const;
     string getType() const;
 };

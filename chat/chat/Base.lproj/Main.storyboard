@@ -722,14 +722,14 @@
                                     <outlet property="nextKeyView" destination="6Yu-eT-6bc" id="6mQ-ZE-6Lg"/>
                                 </connections>
                             </textField>
-                            <scrollView wantsLayer="YES" appearanceType="aqua" fixedFrame="YES" horizontalLineScroll="35" horizontalPageScroll="10" verticalLineScroll="35" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" horizontalScrollElasticity="none" translatesAutoresizingMaskIntoConstraints="NO" id="nRW-JH-0KB">
+                            <scrollView wantsLayer="YES" appearanceType="aqua" fixedFrame="YES" horizontalLineScroll="25" horizontalPageScroll="10" verticalLineScroll="25" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" horizontalScrollElasticity="none" translatesAutoresizingMaskIntoConstraints="NO" id="nRW-JH-0KB">
                                 <rect key="frame" x="20" y="81" width="380" height="420"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES"/>
                                 <clipView key="contentView" ambiguous="YES" copiesOnScroll="NO" id="uBb-S5-ujr">
                                     <rect key="frame" x="1" y="1" width="378" height="418"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <tableView identifier="MessagesCell" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="30" id="mcv-aV-cCR">
+                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="20" rowSizeStyle="automatic" viewBased="YES" id="mcv-aV-cCR">
                                             <rect key="frame" x="0.0" y="0.0" width="658" height="418"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <size key="intercellSpacing" width="290" height="5"/>
@@ -748,6 +748,26 @@
                                                         <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
+                                                    <prototypeCellViews>
+                                                        <tableCellView identifier="MessageCell" id="4LZ-kc-GTb">
+                                                            <rect key="frame" x="145" y="2" width="368" height="20"/>
+                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                            <subviews>
+                                                                <textField identifier="MessageCell" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="q1p-6s-qbK">
+                                                                    <rect key="frame" x="0.0" y="3" width="515" height="19"/>
+                                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                                                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="left" title="Table View Cell" id="RFV-uI-hJL">
+                                                                        <font key="font" size="14" name="AppleSDGothicNeo-Regular"/>
+                                                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                                    </textFieldCell>
+                                                                </textField>
+                                                            </subviews>
+                                                            <connections>
+                                                                <outlet property="textField" destination="q1p-6s-qbK" id="t0m-oh-UGU"/>
+                                                            </connections>
+                                                        </tableCellView>
+                                                    </prototypeCellViews>
                                                 </tableColumn>
                                             </tableColumns>
                                         </tableView>
@@ -767,13 +787,14 @@
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6Yu-eT-6bc">
                                 <rect key="frame" x="370" y="30" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                                <buttonCell key="cell" type="square" title="-&gt;" bezelStyle="shadowlessSquare" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="8UX-Vu-MsV">
+                                <buttonCell key="cell" type="square" title="-&gt;" bezelStyle="shadowlessSquare" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="8UX-Vu-MsV">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" size="12" name="AppleSDGothicNeo-Regular"/>
+                                    <font key="font" size="18" name="AppleSDGothicNeo-Regular"/>
                                     <string key="keyEquivalent" base64-UTF8="YES">
 DQ
 </string>
                                 </buttonCell>
+                                <color key="contentTintColor" name="keyboardFocusIndicatorColor" catalog="System" colorSpace="catalog"/>
                                 <connections>
                                     <action selector="Button:" target="XfG-lQ-9wD" id="Rsf-1K-hZd"/>
                                 </connections>
@@ -791,7 +812,7 @@ DQ
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-395" y="938"/>
+            <point key="canvasLocation" x="5" y="947"/>
         </scene>
         <!--Window Controller-->
         <scene sceneID="3tR-cF-GiL">
@@ -881,7 +902,7 @@ DQ
                 </viewController>
                 <customObject id="e63-VP-9s5" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="760" y="724.5"/>
+            <point key="canvasLocation" x="761" y="670"/>
         </scene>
     </scenes>
 </document>
