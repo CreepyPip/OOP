@@ -9,13 +9,13 @@
     {
       "size" : "16x16",
       "idiom" : "mac",
-      "filename" : "chat32-1.png",
+      "filename" : "chat32.png",
       "scale" : "2x"
     },
     {
       "size" : "32x32",
       "idiom" : "mac",
-      "filename" : "chat32.png",
+      "filename" : "chat32-1.png",
       "scale" : "1x"
     },
     {
@@ -45,13 +45,13 @@
     {
       "size" : "256x256",
       "idiom" : "mac",
-      "filename" : "chat512-1.png",
+      "filename" : "chat512.png",
       "scale" : "2x"
     },
     {
       "size" : "512x512",
       "idiom" : "mac",
-      "filename" : "chat512.png",
+      "filename" : "chat512-1.png",
       "scale" : "1x"
     },
     {

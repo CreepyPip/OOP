@@ -63,15 +63,34 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTableViewDelega
     // Функция принимающая фразу пользователя и выдающая ответ бота
     func BotControl(_ t: String) {
         var text = t
-        message.append("Вы:  \(text)")
-        
+        // Применяем к переменной time форматирование даты и времени
+        let time = DateFormatter()
+        // Оставляю только час и минуту
+        time.timeStyle = .short
+        // Убираю дату
+        time.dateStyle = .none
+        // Функция Date() выдаёт дату и время в данный момент
+        message.append("Вы:  \(text) || \(time.string(from: Date()))")
         text = bot.InOut(text)
-        message.append("Бот: \(text)")
+        message.append("Бот: \(text) || \(time.string(from: Date()))")
+        
+        if text == "Сохраняю" {
+            _ = "Переписка.txt"
+            
+        }
+        
+        // На случай, если пользователь решил завершить чат
+        if text == "Прощайте" {
+            // Работает с задержкой в 2 секунды
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                exit(0)
+            }
+        }
     }
     
     // Поле ввода текста пользователя
     @IBOutlet weak var Field: NSTextField!
-    //
+    // Поле сохраняющее сообщения пользователя и бота
     @IBOutlet weak var MessagesTable: NSTableView!
     
     // Массив

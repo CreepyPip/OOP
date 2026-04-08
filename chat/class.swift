@@ -6,9 +6,10 @@
 //
 
 import Foundation
+import AppKit
 
 /* Класс бота: принимает фразу пользователя,
- обдумывает ответ, считает, обрабатывпает игру
+ обдумывает ответ, считает, обрабатывпает игру, запускает несколько программ
  */
 class Bot {
     // Имя бота
@@ -42,6 +43,8 @@ class Bot {
         // Вопрос "Что ты умеешь"
         "what_can_you_do":
         ["Пару простейших задач", "Особо ничего"],
+        "open_app":
+        ["Сейчас открою", "Будет сделано", "Ожидайте", "Открываю"],
         // На непонятые фразы
         "other":
         ["Я не знаю что ответить", "Возможно, за это отвечает другая команда"]
@@ -50,9 +53,12 @@ class Bot {
     /// Публичный метод принимающий фразу пользователя text и выдающая соответсвующий ответ
     func InOut(_ text: String) -> String {
         var result = ""
-        let op = regex("[-+*/]")
+        let form = regex("\\d+[-+*/]\\d+")
+        let calcphrasereg = regex("\\d+ .*? \\d+")
         let gamereg = regex("игр")
         let launchreg = regex("запус|откр|включи")
+        let exitreg = regex("пока|прощай")
+        let savereg = regex("сохрани переписку")
         
         // Если пользователь выбрал игру в предыдущей фразе, запускается метод обработки игр
         if inGame {
@@ -60,20 +66,38 @@ class Bot {
         } else
         // Если пользователь предложил сыграть в игру, после следующей фразы запустится метод обработки игр
         // lowercased - убирает высокие регистры (ПрИмЕр -> пример)
-        if gamereg.matches(text) {
+        if gamereg.matches(text.lowercased()) {
             inGame = true
             result = "В какую?"
         } else
-        // Запуск программы (пока не работает)
-        if launchreg.matches(text) {
-                launchApp(text)
+        // Запуск программы
+        if launchreg.matches(text.lowercased()) {
+            let l = launchApp(text)
+            // Если программа заранее прописана, запускает и выдаёт подтверждающий ответ
+            if l == "open_app"{
+                return (res["open_app"]?.randomElement())!
+            } else {
+            // Выдаёт отрицательный ответ
+                return l
+            }
         } else
             
         // Проверка на "+", "-", "*", "/" и запуск метода подсчёта
-        if op.matches(text) {
-            result = "Ответ: \(calculate(text))"
+        if form.matches(text) {
+            result = "Ответ: \(expPreCalc(text))"
         } else
-            // Если всё предыдущее не подошло обращается к методу определения разговорных фраз и подбирает случайный ответ
+        if calcphrasereg.matches(text) {
+            result = "Ответ: \(phrasePreCalc(text))"
+        } else
+        // Выход из программы
+        if exitreg.matches(text.lowercased()) {
+            return "Прощайте"
+        } else
+        // На случай, если пользователь просит сохранить переписку
+        if savereg.matches(text.lowercased()) {
+            return "Сохраняю"
+        } else
+        // Если всё предыдущее не подошло обращается к методу определения разговорных фраз и подбирает случайный ответ
         {
             result = (res[botresponce(text)]?.randomElement())!
         }
@@ -81,8 +105,62 @@ class Bot {
         return result
     }
     
-    /// Метод подсчёта (принимает фразу text целиком)
-    private func calculate(_ text: String) -> String {
+    /// Метод для чтения фразы (сложи, подели и т.д) и выдача параметров для просчёта
+    /// Принимает фразу пользователя text
+    private func phrasePreCalc(_ text: String) -> String {
+        // Регулярные выражения
+        let addreg = regex ("сложи")
+        let multreg = regex ("умножь")
+        let subtracreg = regex("вычти")
+        let divreg = regex("подели")
+        let opreg = regex("[А-Яа-я]")
+        let numreg = regex("[0-9]")
+        // Удаляем пробелы
+        let phrase = text.replacingOccurrences(of: " ", with: "")
+        // Массив для значений
+        var a: [Double] = []
+        // Знак действия
+        var b = ""
+        
+        // Доходим до первого значения
+        var opindex1 = phrase.firstIndex(where: { numreg.matches(String($0)) })
+        // Убираем всё что перед ним
+        var bs = phrase[opindex1!...]
+        // Определяем конец первого значения
+        let opindex2 = bs.firstIndex(where: { opreg.matches(String($0)) })
+        // Добавляем его в массив
+        a.append(Double(bs[bs.startIndex..<opindex2!])!)
+        // Убираем всё до следующего слова
+        bs = bs[opindex2!...]
+        // Определяем начало следующего значения
+        opindex1 = bs.firstIndex(where: { numreg.matches(String($0)) })
+        // Убираем всё до значения
+        bs = bs[opindex1!...]
+        // Добавляем его
+        a.append(Double(bs[bs.startIndex...])!)
+
+        // Определяется действие
+        if addreg.matches(text.lowercased()) {
+            b = "+"
+        } else
+        if subtracreg.matches(text.lowercased()) {
+            b = "-"
+        } else
+        if multreg.matches(text.lowercased()) {
+            b = "*"
+        } else
+        if divreg.matches(text.lowercased()) {
+            b = "/"
+        }
+        
+        // Возвращает значение полученное после подсчёта
+        return calculate(1, [b], a)
+    }
+    
+    /// Метод на чтение и обработку математического выражения
+    /// Принимает фразу пользователя text
+    private func expPreCalc(_ text: String) -> String {
+    
         let op = "+-*/"
         var b: [Double] = []
         var j = 0
@@ -124,6 +202,17 @@ class Bot {
             // Определяет расстояние до знака
             opindex = bs.firstIndex(where: { op.contains($0) })
         }
+        
+        return calculate(j, opp, b)
+    }
+    
+    /// Метод подсчёта
+    /// Принимает кол-во иттераций i, массив знаков op в выражении и массив чисел a
+    private func calculate(_ i: Int,_ op: [String],_ a: [Double]) -> String {
+        
+        var j = i
+        var b = a
+        var opp = op
         
         // Цикл подсчёта
         // Повторяется столько раз, сколько знаков во фразе
@@ -193,18 +282,19 @@ class Bot {
     /// Приватный метод определения ответа бота на разговор
     /// Принимает фразу пользователя text и возвращает тип ответа в текстовом виде
     private func botresponce(_ text: String) -> String {
-        let greetreg = regex("\\b[Пп]ривет\\b")
+        // \\ - указывает на то, что второй символ "\" является частью фразы
+        let greetreg = regex("\\bприв")
         let howreg = regex("\\bдела\\b")
         let doreg = regex("можешь\\b|умеешь\\b|делаешь\\b")
         
-        if greetreg.matches(text){
+        if greetreg.matches(text.lowercased()){
             return "greetings"
-        }else if howreg.matches(text) {
+        }else if howreg.matches(text.lowercased()) {
             return "how_are_you"
         }else if text.lowercased() == "как тебя зовут?" ||
             text.lowercased() == "кто ты?" {
             return "what_your_name"
-        }else if doreg.matches(text){
+        }else if doreg.matches(text.lowercased()){
             return "what_can_you_do"
         }
         // Если не подошёл ни один из вариантов, возвращает ответ с непониманием
@@ -238,15 +328,20 @@ class Bot {
         return result
     }
     
-    
+    /// Метод для обработки игры "Кости"
+    /// Ничего не принимает
     private func Dice() -> String {
+        // "Бросок" пользователя
         let a = String(Int.random(in: 2...12))
+        // "Бросок" бота
         let b = String(Int.random(in: 2...12))
         var result = ""
         
+        // Завершает состояние "В игре"
         DiceGame = false
         inGame = false
         
+        // Расчёт итога игры
         if Int(a)! > Int (b)! {
             result = "Вам выпало \(a), а мне \(b). Вы победили!"
         } else if Int(a)! < Int (b)!{
@@ -255,41 +350,90 @@ class Bot {
             result = "Вам выпало \(a), а мне \(b). Ничья :-("
         }
         
+        // Возвращает итог игры
         return result
     }
     
+    /// Метод для обработки игры "Камень, ножницы, бумага"
+    /// Принимает выбор игрока text
     private func PaperStone(_ text: String) -> String {
         
+        // Завершает состояние "В игре"
         PaperStoneGame = false
         inGame = false
-        
+        // Массив выбора для бота
         let SCP: [String] = ["камень", "ножницы", "бумага"]
+        let stone = regex("камень")
+        let cut = regex("ножницы")
+        let paper = regex("бумаг")
         var result = ""
+        // Бот выбирает свой ответ
         let qq = SCP.randomElement()!
+        var playtext = ""
         
-        if (text.lowercased() == "камень" && qq == "ножницы") ||
-            (text.lowercased() == "ножницы" && qq == "бумага") ||
-            (text.lowercased() == "бумага" && qq == "камень"){
-            result = "У вас \(text), у меня \(qq). Вы победили!"
+        // Проверка того, что выбрал пользователь
+        if (stone.matches(text.lowercased())) {
+            playtext = "камень"
+        } else
+            if (cut.matches(text.lowercased())) {
+                playtext = "ножницы"
+            } else
+                if (paper.matches(text.lowercased())) {
+                    playtext = "бумага"
         }
-        else if (text.lowercased() == "камень" && qq == "бумага") ||
-            (text.lowercased() == "ножницы" && qq == "камень") ||
-            (text.lowercased() == "бумага" && qq == "ножницы"){
-                result = "У вас \(text), у меня \(qq). Я победил!!!"
+        
+        // Расчёт итога игры 
+        if (playtext == "камень" && qq == "ножницы") ||
+            (playtext == "ножницы" && qq == "бумага") ||
+            (playtext == "бумага" && qq == "камень"){
+            result = "У вас \(playtext), у меня \(qq). Вы победили!"
         }
-        else if (text.lowercased() == "камень" && qq == "камень") ||
-            (text.lowercased() == "ножницы" && qq == "ножницы") ||
-            (text.lowercased() == "бумага" && qq == "бумага"){
-            result = "У вас \(text), у меня \(qq). Ничья :-("
+        else if (playtext == "камень" && qq == "бумага") ||
+            (playtext == "ножницы" && qq == "камень") ||
+            (playtext == "бумага" && qq == "ножницы"){
+                result = "У вас \(playtext), у меня \(qq). Я победил!!!"
+        }
+        else if (playtext == "камень" && qq == "камень") ||
+            (playtext == "ножницы" && qq == "ножницы") ||
+            (playtext == "бумага" && qq == "бумага"){
+            result = "У вас \(playtext), у меня \(qq). Ничья :-("
         } else {
             result = "Вы написали что-то не то"
         }
         
+        // Возвращает итог игры
         return result
     }
     
-    private func launchApp(_ command: String){
+    // Эта функция будет открывать приложения
+    // Возвращает ответ о состоянии и запускает программу
+    private func launchApp(_ text: String) -> String{
+        let Notesreg = regex("заметки")
+        let Calcreg = regex("калькулятор")
+        let Browserreg = regex("браузер|firefox")
+        var AppId = ""
         
+        // Выбор для запуска калькулятора
+        if Calcreg.matches(text.lowercased()) {
+            AppId = "Calculator"
+        } else
+        // Выбор для запуска заметок
+        if Notesreg.matches(text.lowercased()) {
+            AppId = "Notes"
+        } else
+        // Выбор для запуска браузера
+            if Browserreg.matches(text.lowercased()) {
+            AppId = "firefox"
+        } else {
+        // В случае, если программа не прописана
+                return "Не знаю данной программы"
+        }
+        
+        // Запуск выбранной программы
+        // Данная функция находится в модуле AppKit
+        NSWorkspace.shared.launchApplication(AppId)
+        // Возвращает ответ (ключ словаря)
+        return "open_app"
         
     }
     

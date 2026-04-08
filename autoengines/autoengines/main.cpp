@@ -46,10 +46,12 @@ int main() {
     cout << h1.getType() << endl << e1.getDisplacementString() << endl;
 
     // Пример использования абстрактного метода
+    // 
     engine* eng = new hybrid(4, "parallel", 40, 10, 30 , 1100, 5, 98);
     cout << endl << eng -> getDisplacementString() << endl;
     
     // Пример использования dynamic_cast
     // Нужен для использования методов, не являющихся частью основного класса
+    // dynamic_cast
     cout << dynamic_cast<electric*>(eng) -> getWear() << endl;
 }

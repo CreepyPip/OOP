@@ -13,11 +13,19 @@ func test() {
     let b1 = Bot("test", "test")
     
     // Тест на верность подсчёта
-    let t = b1.InOut("123-12*2+10")
+    var t = b1.InOut("123-12*2+10")
     assert(t == "Ответ: 109.0")
     
+    // Тест на верность подсчёта по фразе
+    t = b1.InOut("Сложи 123.4 и 321.6")
+    assert(t == "Ответ: 445.0")
+    
     // Тест на обработку фраз
-    let text = b1.InOut("Привет")
+    var text = b1.InOut("привет")
+    assert(text == "Привет, test" || text == "Приветствую, test")
+    
+    // Тест на regex
+    text = b1.InOut("ПрИв")
     assert(text == "Привет, test" || text == "Приветствую, test")
 }
 
