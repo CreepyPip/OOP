@@ -123,10 +123,12 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTableViewDelega
         MessagesTable.delegate = self
     }
     
+    // Добавляет поля
     func numberOfRows(in tableView: NSTableView) -> Int {
         return message.count
     }
     
+    // Добавляет текст в поля
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
         let cellIdentifier = NSUserInterfaceItemIdentifier("MessageCell")
         
@@ -138,6 +140,7 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTableViewDelega
         return nil
     }
     
+    // Прокрутка до конца текста, при появлении новых сообщений
     func scrollToBottom() {
         DispatchQueue.main.async {
             let numberOfRows = self.MessagesTable.numberOfRows

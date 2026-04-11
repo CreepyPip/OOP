@@ -52,6 +52,7 @@ int main() {
     
     // Пример использования dynamic_cast
     // Нужен для использования методов, не являющихся частью основного класса
-    // dynamic_cast
-    cout << dynamic_cast<electric*>(eng) -> getWear() << endl;
+    // cast - безопасное преобразование из одного типа в другой
+    // dynamic_cast - нужен для преобразования между классами наследования
+    cout << dynamic_cast<electric*>(eng) -> getWear() << " wear" <<endl;
 }
