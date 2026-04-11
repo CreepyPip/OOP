@@ -1,0 +1,160 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:109.0) Gecko/20100101 Firefox/115.0" version="29.6.1">
+  <diagram name="Page-1" id="iaKgj-LnovwtWoe6X28L">
+    <mxGraphModel dx="1309" dy="537" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="BiDfDA61iNLdSfH2Ud30-2" parent="1" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="Date" vertex="1">
+          <mxGeometry height="450" width="280" x="310" y="380" as="geometry" />
+        </mxCell>
+        <mxCell id="BiDfDA61iNLdSfH2Ud30-3" parent="BiDfDA61iNLdSfH2Ud30-2" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="- day: Int" vertex="1">
+          <mxGeometry height="30" width="280" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="BiDfDA61iNLdSfH2Ud30-4" parent="BiDfDA61iNLdSfH2Ud30-2" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="- month: Int" vertex="1">
+          <mxGeometry height="30" width="280" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="BiDfDA61iNLdSfH2Ud30-5" parent="BiDfDA61iNLdSfH2Ud30-2" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="- year:&amp;nbsp;Intt" vertex="1">
+          <mxGeometry height="30" width="280" y="90" as="geometry" />
+        </mxCell>
+        <mxCell id="BiDfDA61iNLdSfH2Ud30-21" parent="BiDfDA61iNLdSfH2Ud30-2" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="+ Date(day:&amp;nbsp;Int, month:&amp;nbsp;Int, year:&amp;nbsp;Int)" vertex="1">
+          <mxGeometry height="30" width="280" y="120" as="geometry" />
+        </mxCell>
+        <mxCell id="BiDfDA61iNLdSfH2Ud30-8" parent="BiDfDA61iNLdSfH2Ud30-2" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="+ getDay():&amp;nbsp;Int" vertex="1">
+          <mxGeometry height="30" width="280" y="150" as="geometry" />
+        </mxCell>
+        <mxCell id="BiDfDA61iNLdSfH2Ud30-10" parent="BiDfDA61iNLdSfH2Ud30-2" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="+ getMonth():&amp;nbsp;Int" vertex="1">
+          <mxGeometry height="30" width="280" y="180" as="geometry" />
+        </mxCell>
+        <mxCell id="BiDfDA61iNLdSfH2Ud30-11" parent="BiDfDA61iNLdSfH2Ud30-2" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="+ getYear(): Int" vertex="1">
+          <mxGeometry height="30" width="280" y="210" as="geometry" />
+        </mxCell>
+        <mxCell id="BiDfDA61iNLdSfH2Ud30-12" parent="BiDfDA61iNLdSfH2Ud30-2" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="+ setDay(newDay:&amp;nbsp;Int): " vertex="1">
+          <mxGeometry height="30" width="280" y="240" as="geometry" />
+        </mxCell>
+        <mxCell id="BiDfDA61iNLdSfH2Ud30-13" parent="BiDfDA61iNLdSfH2Ud30-2" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="+ setMonth(newMonth:&amp;nbsp;Int): " vertex="1">
+          <mxGeometry height="30" width="280" y="270" as="geometry" />
+        </mxCell>
+        <mxCell id="BiDfDA61iNLdSfH2Ud30-14" parent="BiDfDA61iNLdSfH2Ud30-2" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="+ setYear(newYear:&amp;nbsp;Int):" vertex="1">
+          <mxGeometry height="30" width="280" y="300" as="geometry" />
+        </mxCell>
+        <mxCell id="BiDfDA61iNLdSfH2Ud30-15" parent="BiDfDA61iNLdSfH2Ud30-2" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="+ addDay(newDay:&amp;nbsp;Int):" vertex="1">
+          <mxGeometry height="30" width="280" y="330" as="geometry" />
+        </mxCell>
+        <mxCell id="BiDfDA61iNLdSfH2Ud30-16" parent="BiDfDA61iNLdSfH2Ud30-2" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="+ addMonth(newMonth:&amp;nbsp;Int):" vertex="1">
+          <mxGeometry height="30" width="280" y="360" as="geometry" />
+        </mxCell>
+        <mxCell id="BiDfDA61iNLdSfH2Ud30-17" parent="BiDfDA61iNLdSfH2Ud30-2" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="+ addYear(newYear:&amp;nbsp;Int):" vertex="1">
+          <mxGeometry height="30" width="280" y="390" as="geometry" />
+        </mxCell>
+        <mxCell id="BiDfDA61iNLdSfH2Ud30-18" parent="BiDfDA61iNLdSfH2Ud30-2" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="+ DateString(): string" vertex="1">
+          <mxGeometry height="30" width="280" y="420" as="geometry" />
+        </mxCell>
+        <mxCell id="BiDfDA61iNLdSfH2Ud30-9" edge="1" parent="BiDfDA61iNLdSfH2Ud30-2" source="BiDfDA61iNLdSfH2Ud30-21" style="endArrow=none;html=1;rounded=0;exitX=-0.005;exitY=0.021;exitDx=0;exitDy=0;exitPerimeter=0;entryX=1.004;entryY=1;entryDx=0;entryDy=0;entryPerimeter=0;" target="BiDfDA61iNLdSfH2Ud30-5" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="130" y="220" as="sourcePoint" />
+            <mxPoint x="180" y="170" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="E1RdCdb5SCxDSk1SeMlG-1" edge="1" parent="1" source="BHrvHgmas3prNHSbSqtJ-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;" target="BiDfDA61iNLdSfH2Ud30-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="BHrvHgmas3prNHSbSqtJ-1" parent="1" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="ViewController" vertex="1">
+          <mxGeometry height="300" width="290" x="720" y="380" as="geometry" />
+        </mxCell>
+        <mxCell id="BHrvHgmas3prNHSbSqtJ-2" parent="BHrvHgmas3prNHSbSqtJ-1" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="- DayField: NSTextField" vertex="1">
+          <mxGeometry height="30" width="290" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="BHrvHgmas3prNHSbSqtJ-3" parent="BHrvHgmas3prNHSbSqtJ-1" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="- MonthField: NSTextField" vertex="1">
+          <mxGeometry height="30" width="290" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="BHrvHgmas3prNHSbSqtJ-4" parent="BHrvHgmas3prNHSbSqtJ-1" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="- YearField: NSTextField" vertex="1">
+          <mxGeometry height="30" width="290" y="90" as="geometry" />
+        </mxCell>
+        <mxCell id="BHrvHgmas3prNHSbSqtJ-6" parent="BHrvHgmas3prNHSbSqtJ-1" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="- DataLabel: NSTextField" vertex="1">
+          <mxGeometry height="30" width="290" y="120" as="geometry" />
+        </mxCell>
+        <mxCell id="BHrvHgmas3prNHSbSqtJ-7" parent="BHrvHgmas3prNHSbSqtJ-1" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="- SaveDay: NSTextField" vertex="1">
+          <mxGeometry height="30" width="290" y="150" as="geometry" />
+        </mxCell>
+        <mxCell id="BHrvHgmas3prNHSbSqtJ-8" parent="BHrvHgmas3prNHSbSqtJ-1" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="- SaveMonth: NSTextField" vertex="1">
+          <mxGeometry height="30" width="290" y="180" as="geometry" />
+        </mxCell>
+        <mxCell id="BHrvHgmas3prNHSbSqtJ-9" parent="BHrvHgmas3prNHSbSqtJ-1" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="- SaveYear: NSTextField" vertex="1">
+          <mxGeometry height="30" width="290" y="210" as="geometry" />
+        </mxCell>
+        <mxCell id="BHrvHgmas3prNHSbSqtJ-10" parent="BHrvHgmas3prNHSbSqtJ-1" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="- SetButton (NSButton: sender)" vertex="1">
+          <mxGeometry height="30" width="290" y="240" as="geometry" />
+        </mxCell>
+        <mxCell id="BHrvHgmas3prNHSbSqtJ-11" parent="BHrvHgmas3prNHSbSqtJ-1" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="- AddButton (NSButton: sender)" vertex="1">
+          <mxGeometry height="30" width="290" y="270" as="geometry" />
+        </mxCell>
+        <mxCell id="E1RdCdb5SCxDSk1SeMlG-2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="&lt;br&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="660" width="230" x="20" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="E1RdCdb5SCxDSk1SeMlG-3" parent="1" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" value="Легенда" vertex="1">
+          <mxGeometry height="30" width="60" x="100" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="E1RdCdb5SCxDSk1SeMlG-4" edge="1" parent="1" style="endArrow=open;html=1;rounded=0;endFill=0;jumpSize=12;endSize=12;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="30" y="89.5" as="sourcePoint" />
+            <mxPoint x="120" y="89.5" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="E1RdCdb5SCxDSk1SeMlG-5" edge="1" parent="1" style="endArrow=block;html=1;rounded=0;endFill=0;endSize=13;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="30" y="189" as="sourcePoint" />
+            <mxPoint x="120" y="189" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="E1RdCdb5SCxDSk1SeMlG-6" edge="1" parent="1" style="endArrow=block;html=1;rounded=0;endFill=0;endSize=13;dashed=1;dashPattern=8 8;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="35" y="280" as="sourcePoint" />
+            <mxPoint x="125" y="280" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="E1RdCdb5SCxDSk1SeMlG-7" edge="1" parent="1" style="endArrow=open;html=1;rounded=0;endFill=0;endSize=11;dashed=1;dashPattern=8 8;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="35" y="370" as="sourcePoint" />
+            <mxPoint x="125" y="370" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="E1RdCdb5SCxDSk1SeMlG-8" edge="1" parent="1" style="endArrow=diamondThin;html=1;rounded=0;endFill=0;endSize=12;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="35" y="500" as="sourcePoint" />
+            <mxPoint x="125" y="500" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="E1RdCdb5SCxDSk1SeMlG-9" edge="1" parent="1" style="endArrow=diamondThin;html=1;rounded=0;endFill=1;endSize=12;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="40" y="630" as="sourcePoint" />
+            <mxPoint x="130" y="630" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="E1RdCdb5SCxDSk1SeMlG-10" parent="1" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" value="Ассоциация&lt;div&gt;Объект А знает об объекте Б&lt;/div&gt;" vertex="1">
+          <mxGeometry height="60" width="80" x="130" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="E1RdCdb5SCxDSk1SeMlG-11" parent="1" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" value="Реализация&lt;br&gt;класс А реализует Б" vertex="1">
+          <mxGeometry height="50" width="80" x="145" y="250" as="geometry" />
+        </mxCell>
+        <mxCell id="E1RdCdb5SCxDSk1SeMlG-12" parent="1" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" value="Зависимость&lt;br&gt;класс А временно использует класс Б" vertex="1">
+          <mxGeometry height="70" width="80" x="145" y="335" as="geometry" />
+        </mxCell>
+        <mxCell id="E1RdCdb5SCxDSk1SeMlG-13" parent="1" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" value="Наследование&lt;br&gt;класс А является подклассом Б" vertex="1">
+          <mxGeometry height="70" width="80" x="140" y="150" as="geometry" />
+        </mxCell>
+        <mxCell id="E1RdCdb5SCxDSk1SeMlG-14" parent="1" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" value="Агрегация&lt;div&gt;Объект А содержит объект Б, но Б может жить без А&lt;/div&gt;" vertex="1">
+          <mxGeometry height="50" width="80" x="145" y="470" as="geometry" />
+        </mxCell>
+        <mxCell id="E1RdCdb5SCxDSk1SeMlG-15" parent="1" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" value="Композиция&lt;div&gt;Объект А владеет объектом Б, но Б не может жить без А&lt;/div&gt;" vertex="1">
+          <mxGeometry height="50" width="80" x="150" y="600" as="geometry" />
+        </mxCell>
+        <mxCell id="AYzFKRTdM0xRqW5CqkdD-3" edge="1" parent="1" source="AYzFKRTdM0xRqW5CqkdD-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=0;" target="BHrvHgmas3prNHSbSqtJ-1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="AYzFKRTdM0xRqW5CqkdD-1" parent="1" style="swimlane;whiteSpace=wrap;html=1;" value="NSViewController" vertex="1">
+          <mxGeometry height="30" width="200" x="960" y="290" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
