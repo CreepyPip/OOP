@@ -16,6 +16,8 @@ class Bot {
     private let botname: String
     // Имя пользователя
     private let name: String
+    private var think: Bool
+    private var briefly: Bool
     // Находится ли бот в состоянии игры
     private var inGame: Bool = false
     // Выбрал ли пользователь игру "Кости"
@@ -24,9 +26,11 @@ class Bot {
     private var PaperStoneGame: Bool = false
     
     // Конструктор (принимает имя бота и имя пользователя)
-    init(_ botname: String = "", _ name: String) {
+    init(_ botname: String = "", _ name: String,_ think: Bool,_ briefly: Bool) {
         self.botname = botname
         self.name = name
+        self.think = think
+        self.briefly = briefly
     }
     
     // Словарь ответов бота на тип фразы пользователя
@@ -49,12 +53,13 @@ class Bot {
         "other":
         ["Я не знаю что ответить", "Возможно, за это отвечает другая команда"]
     ]
+
     
     /// Публичный метод принимающий фразу пользователя text и выдающая соответсвующий ответ
     func InOut(_ text: String) -> String {
         var result = ""
         let form = regex("\\d+[-+*/]\\d+")
-        let calcphrasereg = regex("\\d+ .*? \\d+")
+        let calcphrasereg = regex("\\d+ [a-zA-Zа-яА-ЯёЁ]+ \\d+")
         let gamereg = regex("игр")
         let launchreg = regex("запус|откр|включи")
         let exitreg = regex("пока|прощай")
@@ -99,7 +104,11 @@ class Bot {
         } else
         // Если всё предыдущее не подошло обращается к методу определения разговорных фраз и подбирает случайный ответ
         {
-            result = (res[botresponce(text)]?.randomElement())!
+            let resp = botresponce(text)
+            if resp == "other"{
+                return llm(text)!
+            }
+            result = (res[resp]?.randomElement())!
         }
         // Возвращает ответ
         return result
@@ -436,5 +445,52 @@ class Bot {
         return "open_app"
         
     }
-    
+
+
+    /// Синхронный запрос к локальному серверу
+    /// Подключается к Qwen 3.5 0.6B
+    private func llm(_ prompt: String) -> String? {
+        var req = URLRequest(url: URL(string: "http://127.0.0.1:8080/v1/chat/completions")!)
+        req.timeoutInterval = 120.0
+        var br = ""
+        var th = ""
+        if briefly {br = " Answer briefly."}
+        if !think {th = "/no_think "}
+        let promptpt = "Your name: \(botname). User name: \(name).\(br) The user writes: \(prompt) \(th)"
+        // Подключение с разрешением запроса и получения
+        req.httpMethod = "POST"
+        req.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        req.httpBody = try? JSONSerialization.data(withJSONObject: [
+            "messages": [["role": "user", "content": promptpt]],
+            "max_tokens": 400,
+            "temperature": 0.7
+        ])
+        
+        
+        var result: String?
+        // Для ожидания полного ответа
+        let sem = DispatchSemaphore(value: 0)
+        
+        // URLSession - сетевой запрос
+        URLSession.shared.dataTask(with: req) { data, _, err in
+            // defer - продолжает работу функции при получении ответа
+            // signal - пропускает ответ
+            defer { sem.signal() }
+            // Преждевременный выход при условии, что функция долгое время не завершается
+            guard let data = data, err == nil,
+                  // Переменная для получения данных json
+                  let json = try? JSONSerialization.jsonObject(with: data) as? [String: Any],
+                  // Массив ответов
+                  let choices = json?["choices"] as? [[String: Any]],
+                  // Получения доступа к сообщению
+                  let message = choices.first?["message"] as? [String: Any],
+                  // Извлечение ответа
+                  let content = message["content"] as? String else { return }
+            result = content
+        }.resume()
+        
+        sem.wait() // Блокирует текущий поток до получения ответа
+        return result
+    }
+
 }
