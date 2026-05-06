@@ -16,8 +16,13 @@ class Bot {
     private let botname: String
     // Имя пользователя
     private let name: String
-    private var think: Bool
-    private var briefly: Bool
+    // Параметр "Мышление"
+    private var think: Bool = false
+    // Параметр "Краткий ответ"
+    private var briefly: Bool = true
+    private var url: String = "http://127.0.0.1:8080/v1/chat/completions"
+    private var temperatureLLM = 0.7
+    private var tokensLLM = 400
     // Находится ли бот в состоянии игры
     private var inGame: Bool = false
     // Выбрал ли пользователь игру "Кости"
@@ -26,11 +31,9 @@ class Bot {
     private var PaperStoneGame: Bool = false
     
     // Конструктор (принимает имя бота и имя пользователя)
-    init(_ botname: String = "", _ name: String,_ think: Bool,_ briefly: Bool) {
+    init(_ botname: String = "", _ name: String) {
         self.botname = botname
         self.name = name
-        self.think = think
-        self.briefly = briefly
     }
     
     // Словарь ответов бота на тип фразы пользователя
@@ -102,12 +105,14 @@ class Bot {
         if savereg.matches(text.lowercased()) {
             return "Сохраняю"
         } else
-        // Если всё предыдущее не подошло обращается к методу определения разговорных фраз и подбирает случайный ответ
+        // Если всё предыдущее не подошло обращается к методу определения разговорных фраз и подбирает случайный ответ, либо обращается к LLM
         {
             let resp = botresponce(text)
             if resp == "other"{
-                return llm(text)!
+                // Если ответ получен null, отвечает "Нет соединения с сервером"
+                return llm(text) ?? "Нет соединения с сервером"
             }
+            // Если одна из разговорных фраз
             result = (res[resp]?.randomElement())!
         }
         // Возвращает ответ
@@ -446,24 +451,41 @@ class Bot {
         
     }
 
+    /// Настройки для работы LLM
+    /// Принимает параметры краткого ответа, мышления, ссылки, температуры, токены
+        /// Стоит выделить в отдельный от класса бота класс всё что не касается ответа от бота
+        /// // проверки доделать
+    func settings(_ br: Bool,_ th: Bool,_ Url: String,_ temp: Double,_ tokens: Int){
+        // Передача в поля класса
+        briefly = br
+        think = th
+        url = Url
+        temperatureLLM = temp
+        tokensLLM = tokens
+    }
 
+    
     /// Синхронный запрос к локальному серверу
     /// Подключается к Qwen 3.5 0.6B
-    private func llm(_ prompt: String) -> String? {
-        var req = URLRequest(url: URL(string: "http://127.0.0.1:8080/v1/chat/completions")!)
+    private func llm(_ text: String) -> String? {
+        // Ссылка
+        var req = URLRequest(url: URL(string: url)!)
+        // Максимальное время запроса, по истечению попытка запроса заканчивается
         req.timeoutInterval = 120.0
+        // Параметры
         var br = ""
         var th = ""
         if briefly {br = " Answer briefly."}
         if !think {th = "/no_think "}
-        let promptpt = "Your name: \(botname). User name: \(name).\(br) The user writes: \(prompt) \(th)"
+        // Обращение
+        let prompt = "Your name: \(botname). User name: \(name).\(br) The user writes: \(text) \(th)"
         // Подключение с разрешением запроса и получения
         req.httpMethod = "POST"
         req.setValue("application/json", forHTTPHeaderField: "Content-Type")
         req.httpBody = try? JSONSerialization.data(withJSONObject: [
-            "messages": [["role": "user", "content": promptpt]],
-            "max_tokens": 400,
-            "temperature": 0.7
+            "messages": [["role": "user", "content": prompt]],
+            "max_tokens": tokensLLM,
+            "temperature": temperatureLLM
         ])
         
         

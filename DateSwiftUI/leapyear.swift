@@ -16,6 +16,7 @@ func leapyear(y:Int) -> Bool{
         return false}
 }
 
+// Проверка дня на корректность
 func checkday(d:Int, m:Int, y:Int) -> Bool{
     if m == 2 && !leapyear(y: y) && d <= 28 {   // Февраль (невисокосный год)
         return true
@@ -30,6 +31,7 @@ func checkday(d:Int, m:Int, y:Int) -> Bool{
     }
 }
 
+// Проверка месяца на корректность
 func checkmonth(m:Int) -> Bool {
     if m <= 12 || m > 0 {
         return true

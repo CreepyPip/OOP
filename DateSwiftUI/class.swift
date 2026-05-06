@@ -6,10 +6,14 @@
 //  Copyright © 2026 Семён. All rights reserved.
 //
 
+// Модуль основных функций
 import Foundation
 
+// Класс даты
+// Выводит дату, есть возможность выставить, добавить количество дней (месяцев, лет) к текущей дате
 class Date {
     
+    // Переменные (можно использовать только внутри класса)
     private var day: Int
     private var month: Int
     private var year: Int
@@ -21,6 +25,7 @@ class Date {
         self.year = 0
     }
     
+    // Конструкторы
     convenience init(_ day: Int) {
         self.init()
         setDay(day)
@@ -55,6 +60,8 @@ class Date {
     }
     
     // Выставляет день
+    // Принимает день от пользователя
+    // Есть проверка на корректность дня
     func setDay(_ newDay: Int){
         if month == 1 && !leapyear(y: year) && newDay <= 28 {   // Февраль (невисокосный год)
             day = newDay - 1
@@ -70,6 +77,8 @@ class Date {
     }
     
     // Выставляет месяц
+    // Принимает месяц от пользователя
+    // Есть проверка на корректность месяца
     func setMonth(_ newMonth: Int){
         if newMonth > 12 || newMonth <= 0 {
            month = 999
@@ -80,12 +89,14 @@ class Date {
     }
     
     // Выставляет год
+    // Принимает год отпользователя
     func setYear(_ newYear: Int) {
 
         year = newYear
     }
     
     // Добавляет день (и дополнительно месяц)
+    // Принимает день от пользователя
     func addDay(_ newDay: Int) {
         if month == 1 && !leapyear(y: year) {   // Февраль (невисокосный год)
             addMonth((day + newDay) / 28)
@@ -103,6 +114,7 @@ class Date {
     }
     
     // Добавляет месяц (и дополнительно год)
+    // Принимает месяц от пользователя
     func addMonth(_ newMonth: Int) {
         month = month + newMonth
         addYear(month / 12)
@@ -111,6 +123,7 @@ class Date {
     
     
     // Добавляет год
+    // Принимает месяц от пользователя
     func addYear(_ newYear: Int) {
         year = year + newYear
     }

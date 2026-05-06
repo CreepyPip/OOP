@@ -10,7 +10,7 @@ import Foundation
 
 func test() {
     // Создаю объект
-    let b1 = Bot("test", "test", false, false)
+    let b1 = Bot("test", "test")
     
     // Тест на верность подсчёта
     var t = b1.InOut("123-12*2+10")

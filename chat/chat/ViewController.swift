@@ -10,7 +10,7 @@ import Cocoa
 // Класс для сохранения данных между окнами
 class UserData {
     // Переменная для передачи данных
-    static let ShareNames = UserData()
+    static let Share = UserData()
     // Переменная для сохранения имени пользователя
     var nbot = "Бот"
     // Переменная для сохранения имени бота
@@ -18,22 +18,25 @@ class UserData {
     // Переменные для параметров
     var think = false
     var briefly = true
+    var temperature = 0.7
+    var tokensLLM = 400
+    var Url = "http://127.0.0.1:8080/v1/chat/completions"
+        // Функция открывающая окно, принимает id Window Controller
+        func openWindow(_ id: String) {
+            // Переменная Window Controller чата
+            var chatWindowController: NSWindowController?
+            let sb = NSStoryboard(name: "Main", bundle: nil)
+            
+            chatWindowController = sb.instantiateController(withIdentifier: id) as? NSWindowController
+            chatWindowController!.showWindow(nil)
+        }
     // Функция позволяющая выводить данные из класса
     private init() {}
 }
 
 // Класс окна ввода имени
 class NameView: NSViewController {
-    // Функция открывающая окно, принимает id Window Controller
-    func openWindow(_ id: String) {
-        let sb = NSStoryboard(name: "Main", bundle: nil)
-        
-        self.chatWindowController = sb.instantiateController(withIdentifier: id) as? NSWindowController
-        self.chatWindowController!.showWindow(nil)
-    }
     
-    // Переменная Window Controller чата
-    var chatWindowController: NSWindowController?
     
     // Переменная поля ввода имени пользователя
     @IBOutlet weak var Name: NSTextField!
@@ -41,16 +44,16 @@ class NameView: NSViewController {
     @IBOutlet weak var BotName: NSTextField!
     
     @IBAction func OptionsButton(_ sender: Any) {
-        openWindow("OptionWindow")
+        UserData.Share.openWindow("OptionWindow")
     }
     // Функция срабатывающая при нажатии кнопки
     @IBAction func ButtonB(_ sender: Any) {
         // Передаёт данные с поля ввода имени пользователя
-        UserData.ShareNames.nbot = BotName.stringValue
+        UserData.Share.nbot = BotName.stringValue
         // Передаёт данные с поля ввода имени бота
-        UserData.ShareNames.n = Name.stringValue
+        UserData.Share.n = Name.stringValue
         // Открывает окно чата
-        openWindow("ChatWindow")
+        UserData.Share.openWindow("ChatWindow")
         // Закрывает текущее окно (view controller и window controller)
         self.view.window?.close()
     }
@@ -62,18 +65,36 @@ class OptionView: NSViewController {
     var br = false
     // Переменная мышления
     var th = false
+    // Переменная температуры
+    var temp = 0.7
+    // Переменная максимальной длины ответа бота
+    var tokens = 400
+    var url = "http://127.0.0.1:8080/v1/chat/completions"
     // Не кнопки, а CheckBox
     @IBOutlet weak var ThinkButton: NSButton!
     @IBOutlet weak var BrieflyButton: NSButton!
-
-    // Функция на применение параметров
+    // Поля ввода
+    // Температура
+    @IBOutlet weak var TempField: NSTextField!
+    // Токены
+    @IBOutlet weak var TokenField: NSTextField!
+    // Адрес
+    @IBOutlet weak var UrlField: NSTextField!
+    
+        // Функция на применение параметров
     @IBAction func ApplyButton(_ sender: Any) {
         // Если чекбокс прожали, записывается в переменную
         br = BrieflyButton.state == .on
         th = ThinkButton.state == .on
+        tokens = Int(TokenField.stringValue)!
+        temp = Double(TempField.stringValue)!
+        url = UrlField.stringValue
         // Запись в память
-        UserData.ShareNames.think = th
-        UserData.ShareNames.briefly = br
+        UserData.Share.think = th
+        UserData.Share.briefly = br
+        UserData.Share.tokensLLM = tokens
+        UserData.Share.temperature = temp
+        UserData.Share.Url = url
         // Закрытие окна
         self.view.window?.close()
     }
@@ -82,15 +103,18 @@ class OptionView: NSViewController {
 // Класс главного окна (окна с чатом)
 class ViewController: NSViewController, NSTableViewDataSource, NSTableViewDelegate {
     // Принимает имя пользователя
-    let nbot = UserData.ShareNames.nbot
+    let nbot = UserData.Share.nbot
     // Принимает имя бота
-    let n = UserData.ShareNames.n
+    let n = UserData.Share.n
     // Принимает параметр мышление LLM
-    let th = UserData.ShareNames.think
+    var th = UserData.Share.think
     // Принимает параметр краткого ответа LLM
-    let br = UserData.ShareNames.briefly
+    var br = UserData.Share.briefly
+    var temp = UserData.Share.temperature
+    var tokens = UserData.Share.tokensLLM
+    var url = UserData.Share.Url
     // Создаёт объект
-    lazy var bot = Bot(nbot, n, th, br)
+    lazy var bot = Bot(nbot, n)
     var new_line = ""
     
     // Функция для переноса
@@ -123,6 +147,12 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTableViewDelega
     
     // Функция принимающая фразу пользователя и выдающая ответ бота
     func BotControl(_ t: String) {
+        th = UserData.Share.think
+        br = UserData.Share.briefly
+        temp = UserData.Share.temperature
+        tokens = UserData.Share.tokensLLM
+        url = UserData.Share.Url
+        bot.settings(br, th, url, temp, tokens)
         var text = t
         // Применяем к переменной time форматирование даты и времени
         let time = DateFormatter()
@@ -195,7 +225,10 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTableViewDelega
         }
     }
     
-    // Функция изменения пользователем элементов UI
+    @IBAction func SettingButton(_ sender: Any) {
+        UserData.Share.openWindow("OptionWindow")
+    }
+        // Функция изменения пользователем элементов UI
     override func viewDidLoad() {
         test()
         super.viewDidLoad()
