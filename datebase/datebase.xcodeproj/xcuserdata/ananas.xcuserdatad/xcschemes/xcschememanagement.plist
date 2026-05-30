@@ -28,7 +28,30 @@
 		<key>datebase.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>0</integer>
+			<integer>1</integer>
+		</dict>
+		<key>datebaserelease.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>4</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>03EA64792FB2E54600D7E5B3</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>03EA648A2FB2E54C00D7E5B3</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>03EA64942FB2E54C00D7E5B3</key>
+		<dict>
+			<key>primary</key>
+			<true/>
 		</dict>
 	</dict>
 </dict>

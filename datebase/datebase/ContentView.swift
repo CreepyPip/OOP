@@ -8,19 +8,24 @@
 import SwiftUI
 let db = DB()
 
-// Наблюдаемый
+// Наблюдаемый класс
 class AddDate: ObservableObject {
+    // Переменная передачи данных
     static let Share = AddDate()
+    // Массив структур
     @Published var users: [User] = []
     
+    // Передающиеся переменные
     var ID = 0
     var ShareSurName = ""
     var ShareName = ""
     var ShareSecondName = ""
     var ShareAge = 0
     
+    // Конструктор для передачи
     private init () {}
     
+    // Обновление таблицы
     func refresh() {
         if db.connect("lib") {
             _ = db.createTable()
@@ -29,15 +34,18 @@ class AddDate: ObservableObject {
     }
 }
 
+// Контроллер первого окна
 struct ContentView: View {
     @ObservedObject var shared = AddDate.Share
     @State private var selectedUserId: Int?
+    @State private var sort = [KeyPathComparator(\User.id)]
     var j = 1
+    
     var body: some View {
         VStack {
-            Table(shared.users, selection: $selectedUserId) {
+            Table(shared.users.sorted(using: sort), selection: $selectedUserId) {
                 TableColumn("id") { user in
-                    Text("\(user.id)")}
+					Text("\(user.id)")}
                 .width(15)
                 TableColumn("Фамилия") { user in
                     Text("\(user.surname)")}
@@ -49,6 +57,30 @@ struct ContentView: View {
                     Text("\(user.age)")}
                 .width(50)
             }
+            Text("Сортировать по:")
+            HStack{
+                Button("id") {
+                    sort = [KeyPathComparator(\User.id)]
+					shared.refresh()
+                }
+                Button("Фамилия") {
+                    sort = [KeyPathComparator(\User.surname)]
+					shared.refresh()
+                }
+                Button("Имя") {
+                    sort = [KeyPathComparator(\User.name)]
+					shared.refresh()
+                }
+                Button("Отчество") {
+                    sort = [KeyPathComparator(\User.secondname)]
+					shared.refresh()
+                }
+                Button("Возраст") {
+                    sort = [KeyPathComparator(\User.age)]
+					shared.refresh()
+                }
+            }
+            Text("")
             HStack(spacing: 50){
                 Button("Добавить") {
                     if db.connect("lib") {
@@ -71,6 +103,7 @@ struct ContentView: View {
     }
 }
 
+// Контроллер второго окна
 struct AddView: View {
     @State private var SurName = ""
     @State private var Name = ""
@@ -112,6 +145,7 @@ struct AddView: View {
     }
 }
 
+// Превью UI
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
@@ -128,3 +162,4 @@ extension View {
         window.makeKeyAndOrderFront(sender)
     }
 }
+
